@@ -1,0 +1,26 @@
+{
+  "name": "noctvpn-live-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "browser": "playwright test",
+    "capture": "node scripts/capture.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 18773 --strictPort"
+  },
+  "dependencies": {
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "@vitejs/plugin-react": "4.7.0",
+    "typescript": "5.9.2",
+    "vite": "7.3.6",
+    "vitest": "5.0.2"
+  }
+}

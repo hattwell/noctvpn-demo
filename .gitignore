@@ -1,0 +1,14 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+coverage/
+__pycache__/
+*.pyc
+.DS_Store
+.env*
+*.pem
+*.key
+*.session
+*.db
+*.sqlite
