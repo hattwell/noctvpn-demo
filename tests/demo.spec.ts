@@ -73,6 +73,7 @@ test('bot: local scripted menu never sends messages or gives VPN credentials', a
   await expect(page.getByText(/Здесь показаны только вымышленные ответы/)).toBeVisible();
   await page.getByRole('button', { name: 'Попробовать подключить' }).click();
   await expect(page.getByText('В демо оплата и VPN-доступ недоступны.')).toBeVisible();
+  await expect(page.getByText('В демо оплата и VPN-доступ недоступны.')).toBeInViewport({ ratio: 1 });
   expect(external).toEqual([]);
   expect(await page.locator('input, textarea, a[href*="t.me"], a[href*="telegram"], img').count()).toBe(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

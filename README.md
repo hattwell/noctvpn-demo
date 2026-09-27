@@ -1,5 +1,7 @@
 # NOCT VPN — публичное демо / Public demo
 
+**Живое демо / Live demo: https://noctvpn-demo.onrender.com/**
+
 ## Русский
 
 Интерактивная **статическая демонстрация** интерфейса NoctVPN. Сохранён визуальный язык сайта: тёмный фон, зелёный акцент, крупный первый экран и круговая иллюстрация. Здесь можно выбрать придуманный тариф и период, открыть вымышленный кабинет и пройти заранее написанный сценарий бота прямо в браузере.
@@ -12,7 +14,7 @@
 - [Демо-кабинет](screenshots/cabinet.png) — условная подписка и история без списаний;
 - [Бот · симуляция](screenshots/bot.png) — меню `/start`, тарифы, статус и помощь.
 
-Скриншоты сняты **только с этого демо**. Живая ссылка будет добавлена после проверки публикации.
+Скриншоты сняты **только с этого демо**. Ссылка выше ведёт на отдельный статический сайт, не на рабочий сервис.
 
 ### Локальный запуск
 
@@ -24,6 +26,6 @@ An interactive **static showcase** of the NoctVPN interface. It keeps the websit
 
 **Not a real VPN:** no registration, payments, connections, servers, configurations, customer accounts or personal data. The bot sends nothing to Telegram and displays only predefined local replies. The full product and its Telegram bot are separate and **not connected** to this demo.
 
-See the [site](screenshots/site.png), [sample account](screenshots/cabinet.png) and [scripted bot](screenshots/bot.png) screenshots — all captured from this demo, not from the live product. A live URL will be added after the deployment is verified.
+See the [site](screenshots/site.png), [sample account](screenshots/cabinet.png) and [scripted bot](screenshots/bot.png) screenshots — all captured from this demo, not from the live product. Use the verified live demo URL above; it leads only to the standalone static site.
 
 To run locally with Node.js 22: `npm ci && npm run build && npm run preview`; open `http://127.0.0.1:18773/`. Run `npm test` and `npm run browser` after installing Playwright Chromium. This repository has no backend, environment secrets, API client or production integration.

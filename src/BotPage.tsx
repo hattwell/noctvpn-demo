@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { botReply, nextBotStep, type BotAction, type BotStep } from './bot';
 import type { Plan } from './fixtures';
 
@@ -18,6 +18,11 @@ const choices: Record<BotStep, { label: string; action: BotAction }[]> = {
 export function BotPage({ plan }: { plan: Plan }) {
   const [step, setStep] = useState<BotStep>('idle');
   const [lines, setLines] = useState<Line[]>([]);
+  const transcript = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (transcript.current) transcript.current.scrollTop = transcript.current.scrollHeight;
+  }, [lines]);
 
   const choose = (action: BotAction, label: string) => {
     const next = nextBotStep(step, action);
@@ -31,7 +36,7 @@ export function BotPage({ plan }: { plan: Plan }) {
     <p>Попробуйте короткий сценарий на вымышленных данных. Настоящий бот не получает сообщений.</p>
     <section className="bot-frame" aria-label="Сценарная симуляция бота">
       <div className="bot-header"><span className="bot-avatar" aria-hidden="true">N</span><div><strong>NOCT VPN · сценарий</strong><small>Сообщения не отправляются в Telegram</small></div></div>
-      <div className="bot-transcript" role="log" aria-live="polite" aria-relevant="additions text">
+      <div ref={transcript} className="bot-transcript" role="log" aria-live="polite" aria-relevant="additions text">
         {lines.length === 0 ? <div className="bot-empty">Нажмите /start, чтобы открыть вымышленное меню.</div> :
           lines.map((line, index) => <div key={index} className={'bot-bubble ' + (line.role === 'visitor' ? 'from-visitor' : 'from-scenario')}>{line.text}</div>)}
       </div>
