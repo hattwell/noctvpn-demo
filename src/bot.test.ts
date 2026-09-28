@@ -5,11 +5,12 @@ import { plans } from './fixtures';
 test('scripted bot has only finite safe local transitions', () => {
   expect(nextBotStep('idle', 'start')).toBe('menu');
   expect(nextBotStep('menu', 'plans')).toBe('plans');
-  expect(botReply('plans')).toContain('Фонарь · Горизонт · Орбита');
+  expect(botReply('plans')).toContain('Trial · Base · Base 6 · Base 12 · Family');
   expect(nextBotStep('plans', 'back')).toBe('menu');
   expect(nextBotStep('menu', 'status')).toBe('status');
-  expect(botReply('status', plans[1])).toMatch(/Горизонт.*37 из 100 условных ГБ/);
-  expect(botReply('status', plans[2])).toMatch(/Орбита.*37 из 200 условных ГБ/);
+  expect(botReply('status', plans[1])).toMatch(/Base.*предпросмотр.*доступа нет/);
+  expect(botReply('status', plans[3])).toMatch(/Base 12.*предпросмотр.*доступа нет/);
+  expect(botReply('status', plans[3])).not.toMatch(/undefined|условных ГБ/);
   expect(nextBotStep('status', 'help')).toBe('help');
   expect(nextBotStep('help', 'connect')).toBe('unavailable');
   expect(botReply('unavailable')).toBe('В демо оплата и VPN-доступ недоступны.');

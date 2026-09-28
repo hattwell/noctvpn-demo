@@ -15,11 +15,15 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install -r requirements-demo.txt
+      - run: python3 -m unittest discover -s tests -p 'test_*.py'
       - run: npm ci
       - run: npm audit --audit-level=moderate
       - run: npm test
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run browser
-      - run: python3 -m unittest discover -s tests -p 'test_*.py'
       - run: python3 scripts/check_public_artifact.py

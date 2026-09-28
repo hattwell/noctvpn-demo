@@ -4,28 +4,35 @@
 
 ## Русский
 
-Интерактивная **статическая демонстрация** интерфейса NoctVPN. Сохранён визуальный язык сайта: тёмный фон, зелёный акцент, крупный первый экран и круговая иллюстрация. Здесь можно выбрать придуманный тариф и период, открыть вымышленный кабинет и пройти заранее написанный сценарий бота прямо в браузере.
+Интерактивная демонстрация NoctVPN в визуальном языке основного сайта: главный экран, преимущества, пять тарифов из снимка публичного каталога, кабинет и диалог. Названия/сроки/условные рублёвые цены показаны **для ознакомления, не как действующая оферта**. Можно выбрать план для **предпросмотра** — ни один Trial, покупка, оплата или подключение не исполняются.
 
-**Важно:** это не настоящий VPN. Здесь нет регистрации, оплаты, подключения, серверов, конфигураций, реальных аккаунтов или данных пользователей. Бот не связан с Telegram: кнопки показывают только локальные, заранее написанные ответы. Полный продукт и его Telegram-бот существуют отдельно и **не подключены** к этому демо.
+Демо-кабинет синхронизируется только с **отдельным демо-сервером** на Render Free. Он хранит временный случайный сеанс и выбранный план до 24 часов; после простоя/развёртывания состояние может сброситься. Никаких настоящих учётных записей, платёжных данных, VPN-конфигураций, QR или доступа к рабочим API и базам нет.
 
-### Что посмотреть
+Встроенный в страницу бот **сценарный** и не отправляет сообщения в Telegram. Отдельный `@gitvpndemo_bot` сможет показывать тот же временный выбор после привязки одноразовой командой с сайта, **только после замены раскрытого ранее токена и включения отдельного webhook**. Пока он не подключён, сайт честно отмечает это; не отправляйте боту данные о себе или оплате.
 
-- [Сайт](screenshots/site.png) — пример главной страницы;
-- [Демо-кабинет](screenshots/cabinet.png) — условная подписка и история без списаний;
-- [Бот · симуляция](screenshots/bot.png) — меню `/start`, тарифы, статус и помощь.
+Скриншоты сделаны только с этого демо: [сайт](screenshots/site.png), [кабинет](screenshots/cabinet.png), [сценарный чат](screenshots/bot.png). В публичном профиле скриншоты не размещаются.
 
-Скриншоты сняты **только с этого демо**. Ссылка выше ведёт на отдельный статический сайт, не на рабочий сервис.
+### Локальная проверка
 
-### Локальный запуск
+Node.js 22 и Python 3.12:
 
-Нужен Node.js 22. `npm ci && npm run build && npm run preview`. Откройте `http://127.0.0.1:18773/`. Тесты: `npm test`, `npm run browser` (после сборки и установки Chromium через `npx playwright install chromium`), `python3 -m unittest discover -s tests -p 'test_*.py'` и `python3 scripts/check_public_artifact.py` в опубликованном репозитории. Скриншоты демо: `npm run capture` после сборки.
+```sh
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-demo.txt
+npm ci
+npm test
+.venv/bin/python -m unittest discover -s tests -p 'test_*.py'
+npm run build
+npm run browser
+.venv/bin/python scripts/check_public_artifact.py
+```
+
+Playwright Chromium: `npx playwright install chromium`. Браузерные тесты запускают *только локальные* статический сайт и демо API с отключённым Telegram. Снимки: `npm run capture` после сборки. Не устанавливайте токен бота в проект или браузер: секреты задаются только в настройках отдельного хостинга после ротации.
 
 ## English
 
-An interactive **static showcase** of the NoctVPN interface. It keeps the website's visual language while letting you select a fictional plan and period, explore a sample account and try a fixed-script bot inside the page.
+A visual and interactive NoctVPN showcase with the original site's layout and five public **catalog snapshot** plans. Prices are illustrative and **not an offer**. Trial, checkout, payment and VPN connection always stop at clearly labelled previews. There is no real account, billing, VPN key, QR, configuration or production integration.
 
-**Not a real VPN:** no registration, payments, connections, servers, configurations, customer accounts or personal data. The bot sends nothing to Telegram and displays only predefined local replies. The full product and its Telegram bot are separate and **not connected** to this demo.
+The sample account uses an isolated, short-lived demo API; it may reset after a deployment or inactivity. The chat inside this site is scripted. A separate Telegram demo bot can share this temporary plan only after its previously disclosed token is rotated and a webhook is securely enabled; until then the site reports it as unavailable. Please do not send customer or payment information to this demo.
 
-See the [site](screenshots/site.png), [sample account](screenshots/cabinet.png) and [scripted bot](screenshots/bot.png) screenshots — all captured from this demo, not from the live product. Use the verified live demo URL above; it leads only to the standalone static site.
-
-To run locally with Node.js 22: `npm ci && npm run build && npm run preview`; open `http://127.0.0.1:18773/`. Run `npm test` and `npm run browser` after installing Playwright Chromium. This repository has no backend, environment secrets, API client or production integration.
+View the [site](screenshots/site.png), [sample account](screenshots/cabinet.png) and [scripted browser chat](screenshots/bot.png) screenshots. Run the commands above with Node.js 22/Python 3.12. All public Git revisions are checked for disallowed files and credential shapes.

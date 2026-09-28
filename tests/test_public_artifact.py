@@ -1,13 +1,22 @@
 import tempfile
 import unittest
 from pathlib import Path
-from scripts.check_public_artifact import allowlisted, inspect_public_paths
+from scripts.check_public_artifact import allowlisted, inspect_bytes, inspect_public_paths
 
 
 class PublicArtifactTests(unittest.TestCase):
     def test_typed_unit_test_paths_are_part_of_public_artifact(self):
         self.assertTrue(allowlisted('src/fixtures.test.ts'))
         self.assertTrue(allowlisted('src/bot.test.ts'))
+
+    def test_only_isolated_demo_api_and_bot_destinations_are_allowed(self):
+        self.assertTrue(allowlisted('demo_catalog.json'))
+        self.assertTrue(allowlisted('demo_service/app.py'))
+        self.assertTrue(allowlisted('tests/test_demo_bot.py'))
+        self.assertEqual(inspect_bytes('src/demoClient.ts', b'https://noctvpn-demo-api.onrender.com'), [])
+        self.assertEqual(inspect_bytes('src/CabinetPage.tsx', b'https://t.me/gitvpndemo_bot'), [])
+        self.assertTrue(any('external-network' in issue for issue in inspect_bytes('src/App.tsx', b'https://unrelated.example')))
+        self.assertTrue(any('backend-import' in issue for issue in inspect_bytes('demo_service/app.py', b'from noctvpn.billing import orders')))
 
     def test_safe_static_source_is_accepted(self):
         with tempfile.TemporaryDirectory() as directory:

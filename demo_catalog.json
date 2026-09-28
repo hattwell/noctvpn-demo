@@ -1,0 +1,7 @@
+[
+  {"code":"trial","name":"Trial","rubPrice":0,"durationMonths":null,"durationDays":7,"deviceLimit":2,"locations":["Стокгольм"],"traffic":"20 ГБ","description":"Знакомство с интерфейсом тарифа"},
+  {"code":"base_1","name":"Base","rubPrice":199,"durationMonths":1,"durationDays":null,"deviceLimit":5,"locations":["Хельсинки","Стокгольм","Париж"],"traffic":"Без жёсткой квоты · FUP 500 ГБ","description":"Один месяц"},
+  {"code":"base_6","name":"Base 6","rubPrice":799,"durationMonths":6,"durationDays":null,"deviceLimit":5,"locations":["Хельсинки","Стокгольм","Париж"],"traffic":"Без жёсткой квоты · FUP 500 ГБ","description":"Шесть месяцев"},
+  {"code":"base_12","name":"Base 12","rubPrice":1299,"durationMonths":12,"durationDays":null,"deviceLimit":5,"locations":["Хельсинки","Стокгольм","Париж"],"traffic":"Без жёсткой квоты · FUP 500 ГБ","description":"Двенадцать месяцев"},
+  {"code":"family_1","name":"Family","rubPrice":399,"durationMonths":1,"durationDays":null,"deviceLimit":15,"locations":["Хельсинки","Стокгольм","Париж"],"traffic":"Без жёсткой квоты · FUP 500 ГБ","description":"Семейный пример"}
+]
