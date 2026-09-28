@@ -18,7 +18,7 @@ export function botReply(step: BotStep, plan: Plan = plans[1]): string {
     case 'idle': return '';
     case 'menu': return 'Привет! Это вымышленное демо NoctVPN. Выберите пункт меню.';
     case 'plans': return `${plans.map(plan => plan.name).join(' · ')} — это вымышленные планы.`;
-    case 'status': return `${plan.name}: ${account.status}. ${Math.min(account.usedGb, plan.quotaGb)} из ${plan.quotaGb} условных ГБ. Реального VPN-доступа нет.`;
+    case 'status': return `${plan.name}: ${account.status}. Действующего VPN-доступа нет.`;
     case 'help': return 'Здесь показаны только вымышленные ответы. Сообщения не отправляются в Telegram.';
     case 'unavailable': return 'В демо оплата и VPN-доступ недоступны.';
   }
